@@ -32,6 +32,13 @@ RUN set -x; \
         && apt-get -y install -f --no-install-recommends \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
+# 安裝需要的套件
+RUN sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+RUN sudo apt-get install python-setuptools
+RUN sudo easy_install pip
+RUN sudo apt-get install ttf-wqy-zenhei -y
+RUN sudo apt-get install ttf-wqy-microhei -y
+
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
 COPY ./openerp-server.conf /etc/odoo/
